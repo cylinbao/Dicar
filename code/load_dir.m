@@ -1,3 +1,5 @@
+%% Load all notations and concat them
+
 fnames = dir('notations');
 numfids = length(fnames);
 
