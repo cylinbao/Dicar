@@ -11,7 +11,7 @@ bw = bwareaopen(bw, 100);
 bw_ = ~bw;
 
 CC = bwconncomp(bw_);
-S = regionprops(CC, 'Image');
+S = regionprops(CC, 'Image', 'BoundingBox');
 
 numfids = length(S);
 for k = 1:numfids
