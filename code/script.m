@@ -1,21 +1,16 @@
 clear; close all; clc;
 
-im = imread('im.png');
-if(ndims(im) == 3)
-    im = rgb2gray(im);
-end
-
-thresh = graythresh(im);
-bw = im2bw(im, thresh);
-bw = bwareaopen(bw, 100);
-bw_ = ~bw;
-
-CC = bwconncomp(bw_);
-S = regionprops(CC, 'Image', 'BoundingBox');
+im = imread('level2.png');
+S = image_segmentation(im);
 
 numfids = length(S);
+
+X_test = false(numfids, 40*40);
+t_test = cell(numfids, 1);
 for k = 1:numfids
     sub_im = S(k).Image;
+    sub_im = imresize(sub_im, [40, 40]);
     imshow(sub_im);
-    pause(1);
+    X_test(k, :) = reshape(sub_im', 40*40, 1);
+    t_test{k} = {input('Label: ', 's')};
 end
