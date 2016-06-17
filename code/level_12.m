@@ -1,5 +1,7 @@
 % Eval for level 1+2
+clear; close all; clc;
 
+load('saved.mat');
 SS = level2;
 num = length(SS);
 
