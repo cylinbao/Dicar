@@ -13,9 +13,6 @@ for k = 1:num
                 break; % remove last '='
             end
             
-            h_min = SS(k).BoundingBox(1);
-            h_max = h_min + SS(k).BoundingBox(3);
-            
         case '='
             break; % remove last '='
             
