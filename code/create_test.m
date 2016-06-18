@@ -16,6 +16,7 @@ for k = 1:numfids
 end
 
 load('labels.mat');
+t_test_double = [];
 for k = 1:length(t_test)
     for j = 1:length(labels)
         if (strcmp(t_test{k}, labels{j}))
