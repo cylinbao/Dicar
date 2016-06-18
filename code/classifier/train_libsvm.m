@@ -33,13 +33,17 @@ svm_model = svmtrain(label_train, data_train, '-s 1 -t 2 -c 1 -n 0.1 -b 1');
 [predict acc est] = svmpredict(label_test, data_test, svm_model, '-b 1');
 save -append -mat './nuSVModel_1' svm_model predict acc est;
 
+svm_model = svmtrain(label_train, data_train, '-s 1 -t 2 -c 1 -n 0.2 -b 1');
+[predict acc est] = svmpredict(label_test, data_test, svm_model, '-b 1');
+save -append -mat './nuSVModel_2' svm_model predict acc est;
+
 svm_model = svmtrain(label_train, data_train, '-s 1 -t 2 -c 1 -n 0.25 -b 1');
 [predict acc est] = svmpredict(label_test, data_test, svm_model, '-b 1');
 save -append -mat './nuSVModel_25' svm_model predict acc est;
 
-svm_model = svmtrain(label_train, data_train, '-s 1 -t 2 -c 1 -n 0.35 -b 1');
+svm_model = svmtrain(label_train, data_train, '-s 1 -t 2 -c 1 -n 0.4 -b 1');
 [predict acc est] = svmpredict(label_test, data_test, svm_model, '-b 1');
-save -append -mat './nuSVModel_35' svm_model predict acc est;
+save -append -mat './nuSVModel_4' svm_model predict acc est;
 
 svm_model = svmtrain(label_train, data_train, '-s 1 -t 2 -c 1 -n 0.5 -b 1');
 [predict acc est] = svmpredict(label_test, data_test, svm_model, '-b 1');
