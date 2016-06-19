@@ -68,8 +68,9 @@ while (length(PS) ~= length(S))
                     if (~strcmp(S(h).label, ')'))
                         continue;
                     end
+                    break;
                 end
-                br = bracket_region(S(k).BoundingBox, S(j).BoundingBox);
+                br = bracket_region(S(k).BoundingBox, S(h).BoundingBox);
                 bracket = [];
                 for j = 1:length(S)
                     if ((k == j) || (h == j))
