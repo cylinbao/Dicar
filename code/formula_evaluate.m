@@ -87,6 +87,26 @@ while (length(PS) ~= length(S))
                 idx = [idx, k, h]; % remove current symbols
                 break;
                 
+            case 'sqrt'
+                sr = sqrt_region(S(k).BoundingBox);
+                sroot = [];
+                for j = 1:length(S)
+                    if (k == j)
+                        continue;
+                    end
+                    if ((rectint(sr, S(j).BoundingBox) > 0))
+                        sroot = [sroot; S(j)];
+                        idx = [idx, j]; % remove intersected symbols
+                    end
+                end
+                if (~isempty(sroot))
+                    TS = S(k);
+                    TS.label = num2str(sqrt(formula_evaluate(sroot)));
+                    SS = [SS; TS];
+                    idx = [idx, k]; % remove current symbols
+                    break;
+                end
+                
 %             case {'sigma', 'pi'}
 %                 [sym, smin, smax, sidx, tidx] = get_sym(S(k), S);
 %                 TS = S(sidx);
