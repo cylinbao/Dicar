@@ -19,8 +19,8 @@ bot(3) = bbox(3);
 bot(4) = bbox(4) / 2;
 %%
 mid = zeros(1, 4);
-mid(1) = bbox(1);
+mid(1) = bbox(1) + bbox(3);
 mid(2) = bbox(2);
-mid(3) = bbox(3) + bound;
+mid(3) = mid(1) + bound;
 mid(4) = bbox(4);
 end
