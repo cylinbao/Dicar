@@ -1,7 +1,7 @@
 %% Load all notations and concat them
-
 clear; close all; clc;
-fnames = dir('notations');
+path = 'dataset/normal/notations';
+fnames = dir(path);
 numfids = length(fnames);
 
 X_train = [];
@@ -15,7 +15,7 @@ for k = 1:numfids
     if(strcmp(symbol, '.') || strcmp(symbol, '..'))
         continue;
     end
-    [X, t] = read_images(40, 40, symbol, strcat('notations/', symbol));
+    [X, t] = read_images(40, 40, symbol, strcat(path, '/', symbol));
     t_double = idx * ones(length(t), 1);
     X_train = [X_train; X];
     t_train = [t_train; t];
