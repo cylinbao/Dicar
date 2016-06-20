@@ -1,6 +1,7 @@
 clear all;
 
-addpath '../libsvm/libsvm_unix';
+addpath '../libsvm/unix';
+addpath '../libsvm/window';
 
 load '../data_normal.mat';
 
@@ -27,7 +28,7 @@ label_test = t_train_double(test_indices, :);
 
 svm_model = svmtrain(label_train, data_train, '-s 1 -t 2 -c 1 -n 0.001 -b 1');
 [predict acc est] = svmpredict(label_test, data_test, svm_model, '-b 1');
-save -mat './nuSVModel_01_n.mat' svm_model predict acc est;
+save -mat './nuSVModel_001_n.mat' svm_model predict acc est;
 
 svm_model = svmtrain(label_train, data_train, '-s 1 -t 2 -c 1 -n 0.01 -b 1');
 [predict acc est] = svmpredict(label_test, data_test, svm_model, '-b 1');

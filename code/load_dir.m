@@ -1,6 +1,6 @@
 %% Load all notations and concat them
 clear; close all; clc;
-path = 'dataset/normal/notations';
+path = 'dataset/white_digit/normal/notations';
 fnames = dir(path);
 numfids = length(fnames);
 

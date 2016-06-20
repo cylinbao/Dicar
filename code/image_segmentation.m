@@ -14,7 +14,7 @@ if(ndims(im) == 3) % RGB image
 end
 threshold = graythresh(im);
 % threshold = 0.2;
-bw = ~im2bw(im, threshold);
+bw = im2bw(im, threshold);
 
 %% Remove all object containing fewer than 100 pixels
 bw = bwareaopen(bw, 100);
