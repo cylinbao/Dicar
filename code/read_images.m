@@ -52,7 +52,7 @@ for k = 1:numfids
     threshold = graythresh(im);
     im = im2bw(im,threshold);
     im = imresize(im, [v_size, h_size]);
-    X(k, :) = reshape(im', size, 1);
+    X(k, :) = reshape(im, 1, size);
 end
 
 %%
