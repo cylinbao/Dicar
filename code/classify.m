@@ -2,7 +2,7 @@
 function [predict probability] = classify(x)
 
 addpath './libsvm/libsvm_unix'
-load './classifier/nuSVModel.mat';
+load './classifier/nuSVModel_n.mat';
 
 [predict acc est] = svmpredict(zeros(size(x,1),1), x, svm_model, '-b 1');
 
