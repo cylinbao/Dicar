@@ -10,8 +10,8 @@ img_segs = image_segmentation(img);
 nS = [];
 for i = 1:size(img_segs,1)
 	imshow(img_segs(i).Image);
-	number = classify(double(imresize(img_segs(i).Image,[40 40])));
-	label = labels{number,1};
+	number = classify(double(reshape(imresize(img_segs(i).Image,[40 40]),1,1600)));
+	label = labels{number,1}
 	tnS = struct('BoundingBox', img_segs(i).BoundingBox, 'number', number, 'label', label);
 	nS = [nS; tnS];
 end
