@@ -56,7 +56,7 @@ while (~isequal(S, PS))
                     end
                     if (rectint(interested_region, S(j).BoundingBox) > 0 ...
                             && all(ismember(S(j).label, '0123456789')) && ...
-                            S(j).BoundingBox(4) < 0.7 * S(k).BoundingBox(4))
+                            S(j).BoundingBox(4) < 0.9 * S(k).BoundingBox(4))
                         interested_symbols = [interested_symbols; S(j)];
                         idx = [idx, j]; % remove intersected symbols
                     end
