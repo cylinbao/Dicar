@@ -147,7 +147,7 @@ set(handles.Symbols, 'string', symbols);
 % Remove '='
 if (strcmp(nS(end).label, '='))
     nS(end) = [];
-elseif(strcmp(nS(end).label, '-'))
+elseif(strcmp(nS(end).label, '-') && strcmp(nS(end - 1).label, '-'))
     nS(end) = [];
     nS(end) = [];
 end
