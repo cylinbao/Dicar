@@ -107,8 +107,8 @@ while (~isequal(S, PS))
                 idx = [idx, k, sidx, fidx];
                 break;
                 
-            case 'r' % root square
-                interested_region = power_region(S(k).BoundingBox);
+            case 'r' % square root
+                interested_region = sqrt_region(S(k).BoundingBox);
                 interested_symbols = [];
                 for j = 1:length(S)
                     if (k == j)
