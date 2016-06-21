@@ -163,7 +163,12 @@ function Interpret_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 handles = guidata(hObject);
 nS = handles.nS;
-formula = formula_interpret(nS);
+try
+    formula = formula_interpret(nS);
+catch
+    warning('Problem at interpreter, set formula to empty');
+    formula = '';
+end
 set(handles.Formula, 'string', formula);
 handles.formula = formula;
 guidata(hObject, handles);
@@ -246,7 +251,14 @@ function Evaluate_Callback(hObject, eventdata, handles)
 handles = guidata(hObject);
 formula = handles.formula;
 syms m n;
-result = eval(formula);
+
+try
+    result = eval(formula);
+catch
+    warning('Problem at evaluation, set result to 0');
+    result = 0;
+end
+
 if (isnumeric(result))
     set(handles.Result, 'string', num2str(result));
 else
