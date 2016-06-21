@@ -6,6 +6,7 @@ addpath './libsvm/unix';
 addpath './libsvm/window';
 load 'classifier/nuSVModel_n.mat';
 load 'labels.mat';
+syms m n;
 
 %% Segment
 img = imread(path);
