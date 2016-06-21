@@ -31,6 +31,9 @@ end
 
 %% Main part
 for j = 1:length(S)
+    if (j == k)
+        continue;
+    end
     if (rectint(mr, S(j).BoundingBox) > 0)
         fidx = [fidx, j]; % symbols of main part
         if (strcmp(S(j).label, '('))
@@ -40,12 +43,12 @@ for j = 1:length(S)
                 end
                 break;
             end
-            interested_region = bracket_region(S(k).BoundingBox, S(h).BoundingBox);
+            interested_region = bracket_region(S(j).BoundingBox, S(h).BoundingBox);
             for l = 1:length(S)
                 if ((j == l) || (h == l))
                     continue;
                 end
-                if (rectint(interested_region, S(j).BoundingBox) > 0)
+                if (rectint(interested_region, S(l).BoundingBox) > 0)
                     fidx = [fidx, l]; % remove intersected symbols
                 end
             end
