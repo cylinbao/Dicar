@@ -1,17 +1,21 @@
-function value = formula_evaluate(path)
+function result = formula_evaluate(path)
+%%
 
-load './labels.mat';
-addpath 'libsvm/unix';
-addpath 'libsvm/window';
+%%
+addpath './libsvm/unix';
+addpath './libsvm/window';
+load 'classifier/nuSVModel_n.mat';
+load 'labels.mat';
 
 %% Segment
 img = imread(path);
-img_segs = image_segmentation(img);
+S = image_segmentation(img);
 
-%% Rcognitioin
+%% Recognitioin
 nS = [];
-for i = 1:size(img_segs,1)
-    img = img_segs(i).Image;
+symbols = [];
+for i = 1:length(S)
+    img = S(i).Image;
     imsize = size(img);
     if (imsize(1) > imsize(2))
         pad = [0, round((imsize(1) - imsize(2)) / 2)];
@@ -23,15 +27,37 @@ for i = 1:size(img_segs,1)
 % 	imshow(img);
 	[number, prob] = classify(reshape(img',1,1600));
 	label = labels{number,1};
-	tnS = struct('BoundingBox', img_segs(i).BoundingBox, 'number', number, 'label', label);
+    tnS = struct('BoundingBox', S(i).BoundingBox, 'number', number, 'label', label);
 	nS = [nS; tnS];
+    symbols = strcat(symbols, label);
+end
+% Remove '='
+if (strcmp(nS(end).label, '='))
+    nS(end) = [];
+elseif(strcmp(nS(end).label, '-') && strcmp(nS(end - 1).label, '-'))
+    nS(end) = [];
+    nS(end) = [];
 end
 
 %% Interpreter
-formula = formula_interpret(nS);
+try
+    formula = formula_interpret(nS);
+catch
+    warning('Problem at evaluation, set result to 0');
+    result = 0;
+    return;
+end
 
 %% Ealuation
-syms m n;
-value = eval(formula);
+try
+    result = eval(formula);
+    if (~isnumeric(result))
+        result = str2double(char(result));
+    end
+catch
+    warning('Problem at evaluation, set result to 0');
+    result = 0;
+    return;
+end
 
 end
