@@ -30,11 +30,4 @@ best_idx = find(probability_vec == max(probability_vec));
 probability = probability_vec(best_idx);
 predict = predict_vec(best_idx);
 
-%% Debug
-% load('labels.mat');
-% im = reshape(x, 40, 40);
-% im = im';
-% imshow(im);
-% label = labels{predict, 1};
-
 end
