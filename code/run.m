@@ -26,6 +26,7 @@ for k = 1:length(fnames)
     
     Y_test = zeros(length(imgnames), 1);
     for j = 1:length(imgnames)
+        fprintf('-- Reading file: %s\n', imgnames{j});
         imgpath = strcat(subpath, '/', imgnames{j});
         Y_test(j) = formula_evaluate(imgpath);
     end
