@@ -20,11 +20,13 @@ for j = 1:length(S)
         end
     end
     if (rectint(br, S(j).BoundingBox) > 0)
-        sidx = [sidx, j]; % remove intersected symbols
-        if (ismember(S(j).label, '0123456789'))
-            smin = strcat(smin, S(j).label);
-        elseif (ismember(S(j).label, 'mn'))
-            sym = S(j).label;
+        if (S(j).BoundingBox(2) + S(j).BoundingBox(4)/2 > S(k).BoundingBox(2) + S(k).BoundingBox(4))
+            sidx = [sidx, j]; % remove intersected symbols
+            if (ismember(S(j).label, '0123456789'))
+                smin = strcat(smin, S(j).label);
+            elseif (ismember(S(j).label, 'mn'))
+                sym = S(j).label;
+            end
         end
     end
 end
@@ -34,7 +36,7 @@ for j = 1:length(S)
     if (j == k)
         continue;
     end
-    if (rectint(mr, S(j).BoundingBox) > 0)
+    if (rectint(mr, S(j).BoundingBox) > 0 && ~ismember(j, sidx))
         fidx = [fidx, j]; % symbols of main part
         if (strcmp(S(j).label, '('))
             for h = 1:length(S)
