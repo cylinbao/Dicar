@@ -102,6 +102,7 @@ while (~isequal(S, PS))
                     SS.label = strcat('symprod(', func, ',', sym, ',', smin, ',', smax, ')');
                 end
                 idx = [idx, k, sidx, fidx];
+                break;
                
             otherwise
                 %

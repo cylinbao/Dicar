@@ -13,9 +13,11 @@ for j = 1:length(S)
     if (k == j)
         continue;
     end
-    if ((rectint(tr, S(j).BoundingBox) > 0) && ismember(S(j).label, '0123456789'))
-        smax = strcat(smax, S(j).label);
+    if (rectint(tr, S(j).BoundingBox) > 0)
         sidx = [sidx, j]; % remove intersected symbols
+        if (ismember(S(j).label, '0123456789'))
+            smax = strcat(smax, S(j).label);
+        end
     end
     if (rectint(br, S(j).BoundingBox) > 0)
         if (ismember(S(j).label, '0123456789'))
@@ -44,7 +46,7 @@ for j = 1:length(S)
                     continue;
                 end
                 if (rectint(interested_region, S(j).BoundingBox) > 0)
-                    fidx = [fidx, j]; % remove intersected symbols
+                    fidx = [fidx, l]; % remove intersected symbols
                 end
             end
         elseif (strcmp(S(j).label, sym))
