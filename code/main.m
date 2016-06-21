@@ -247,8 +247,11 @@ handles = guidata(hObject);
 formula = handles.formula;
 syms m n;
 result = eval(formula);
-set(handles.Result, 'string', num2str(result));
-handles.result = result;
+if (isnumeric(result))
+    set(handles.Result, 'string', num2str(result));
+else
+    set(handles.Result, 'string', char(result));
+end
 guidata(hObject, handles);
 
 
