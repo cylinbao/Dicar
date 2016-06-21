@@ -22,7 +22,7 @@ function varargout = main(varargin)
 
 % Edit the above symbols to modify the response to help main
 
-% Last Modified by GUIDE v2.5 21-Jun-2016 07:42:52
+% Last Modified by GUIDE v2.5 21-Jun-2016 09:09:22
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -145,9 +145,9 @@ for i = 1:length(S)
 end
 set(handles.Symbols, 'string', symbols);
 % Remove '='
-if (strcmp(nS(end), '='))
+if (strcmp(nS(end).label, '='))
     nS(end) = [];
-elseif(strcmp(nS(end), '-'))
+elseif(strcmp(nS(end).label, '-'))
     nS(end) = [];
     nS(end) = [];
 end
@@ -250,3 +250,15 @@ result = eval(formula);
 set(handles.Result, 'string', num2str(result));
 handles.result = result;
 guidata(hObject, handles);
+
+
+% --- Executes on button press in All.
+function All_Callback(hObject, eventdata, handles)
+% hObject    handle to All (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+Open_Callback(hObject, eventdata, handles);
+Segment_Callback(hObject, eventdata, handles);
+Recognize_Callback(hObject, eventdata, handles);
+Interpret_Callback(hObject, eventdata, handles);
+Evaluate_Callback(hObject, eventdata, handles);

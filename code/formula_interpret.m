@@ -81,8 +81,10 @@ while (~isequal(S, PS))
                         continue;
                     end
                     if (rectint(interested_region, S(j).BoundingBox) > 0)
-                        interested_symbols = [interested_symbols; S(j)];
-                        idx = [idx, j]; % remove intersected symbols
+                        if (S(j).BoundingBox(3) < interested_region(3))
+                            interested_symbols = [interested_symbols; S(j)];
+                            idx = [idx, j]; % remove intersected symbols
+                        end
                     end
                 end
                 SS = S(k);
@@ -103,7 +105,25 @@ while (~isequal(S, PS))
                 end
                 idx = [idx, k, sidx, fidx];
                 break;
-               
+                
+            case 'r' % root square
+                interested_region = power_region(S(k).BoundingBox);
+                interested_symbols = [];
+                for j = 1:length(S)
+                    if (k == j)
+                        continue;
+                    end
+                    if (rectint(interested_region, S(j).BoundingBox) > 0)
+                        interested_symbols = [interested_symbols; S(j)];
+                        idx = [idx, j]; % remove intersected symbols
+                    end
+                end
+                if (~isempty(interested_symbols))
+                    SS = S(idx(1));
+                    SS.label = strcat('sqrt(', formula_interpret(interested_symbols), ')');
+                    break;
+                end
+                
             otherwise
                 %
         end

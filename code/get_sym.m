@@ -20,12 +20,12 @@ for j = 1:length(S)
         end
     end
     if (rectint(br, S(j).BoundingBox) > 0)
+        sidx = [sidx, j]; % remove intersected symbols
         if (ismember(S(j).label, '0123456789'))
             smin = strcat(smin, S(j).label);
         elseif (ismember(S(j).label, 'mn'))
             sym = S(j).label;
         end
-        sidx = [sidx, j]; % remove intersected symbols
     end
 end
 
