@@ -16,7 +16,7 @@ load './classifier/nuSVModel_n.mat';
 %%
 % minus one for the type '17~22', cause 'est' only contains '21' columns
 % becuase it lacks of type '16' which is 'frac'
-    predict_t = predict - (predict > 16);
+predict_t = predict - (predict > 16);
 
 for i=1:size(predict_t,1)
 	probability(i,1) = est(i, predict_t(i));
