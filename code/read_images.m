@@ -60,6 +60,7 @@ t = repmat({label}, numfids, 1); %label * ones(numfids, 1);
 
 %%
 imshow(im);
+pause(1);
 
 %%
 varargout{1} = X;
