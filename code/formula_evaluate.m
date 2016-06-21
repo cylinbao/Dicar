@@ -33,10 +33,19 @@ for i = 1:length(S)
     symbols = strcat(symbols, label);
 end
 % Remove '='
-if (strcmp(nS(end).label, '='))
+% if (strcmp(nS(end).label, '='))
+%     nS(end) = [];
+% elseif(strcmp(nS(end).label, '-') && strcmp(nS(end - 1).label, '-'))
+%     nS(end) = [];
+%     nS(end) = [];
+% end
+if ((nS(end-1).BoundingBox(1) + nS(end-1).BoundingBox(3)/2 > nS(end).BoundingBox(1)) && ...
+        (nS(end-1).BoundingBox(1) + nS(end-1).BoundingBox(3)/2 < nS(end).BoundingBox(1) + nS(end).BoundingBox(3)) && ...
+        (nS(end).BoundingBox(1) + nS(end).BoundingBox(3)/2 > nS(end-1).BoundingBox(1)) && ...
+        (nS(end).BoundingBox(1) + nS(end).BoundingBox(3)/2 < nS(end-1).BoundingBox(1) + nS(end-1).BoundingBox(3)))
     nS(end) = [];
-elseif(strcmp(nS(end).label, '-') && strcmp(nS(end - 1).label, '-'))
     nS(end) = [];
+else
     nS(end) = [];
 end
 
