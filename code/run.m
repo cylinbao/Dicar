@@ -1,7 +1,5 @@
-%% Load all notations and concat them
+%%
 clear; close all; clc;
-
-%syms m n;
 
 path = 'formulas';
 fnames = dir(path);
@@ -31,5 +29,5 @@ for k = 1:length(fnames)
         imgpath = strcat(subpath, '/', imgnames{j});
         Y_test(j) = formula_evaluate(imgpath);
     end
-    save(strcat(fnames(k).name, '.mat', Y_test));
+    save(strcat(path, '/', fnames(k).name, '/Y_test.mat'), 'Y_test');
 end
