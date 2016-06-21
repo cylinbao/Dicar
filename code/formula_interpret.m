@@ -68,30 +68,30 @@ while (~isequal(S, PS))
                     break;
                 end
                 
-            case '('
-                for h = 1:length(S)
-                    if (~strcmp(S(h).label, ')'))
-                        continue;
-                    end
-                    break;
-                end
-                interested_region = bracket_region(S(k).BoundingBox, S(h).BoundingBox);
-                interested_symbols = [];
-                for j = 1:length(S)
-                    if ((k == j) || (h == j))
-                        continue;
-                    end
-                    if (rectint(interested_region, S(j).BoundingBox) > 0)
-                        if (S(j).BoundingBox(3) < interested_region(3))
-                            interested_symbols = [interested_symbols; S(j)];
-                            idx = [idx, j]; % remove intersected symbols
-                        end
-                    end
-                end
-                SS = S(k);
-                SS.label = strcat('(', formula_interpret(interested_symbols), ')');
-                idx = [idx, k, h]; % remove current symbols
-                break;
+%             case '('
+%                 for h = 1:length(S)
+%                     if (~strcmp(S(h).label, ')'))
+%                         continue;
+%                     end
+%                     break;
+%                 end
+%                 interested_region = bracket_region(S(k).BoundingBox, S(h).BoundingBox);
+%                 interested_symbols = [];
+%                 for j = 1:length(S)
+%                     if ((k == j) || (h == j))
+%                         continue;
+%                     end
+%                     if (rectint(interested_region, S(j).BoundingBox) > 0)
+%                         if (S(j).BoundingBox(3) < interested_region(3))
+%                             interested_symbols = [interested_symbols; S(j)];
+%                             idx = [idx, j]; % remove intersected symbols
+%                         end
+%                     end
+%                 end
+%                 SS = S(k);
+%                 SS.label = strcat('(', formula_interpret(interested_symbols), ')');
+%                 idx = [idx, k, h]; % remove current symbols
+%                 break;
                 
             case {'s', 'p'} % sigma and pi
                 [sym, smin, smax, sidx, fidx] = get_sym(k, S);
