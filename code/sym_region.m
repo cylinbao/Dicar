@@ -14,9 +14,9 @@ top(3) = bbox(3);
 top(4) = bbox(4) / 2;
 %%
 bot = zeros(1, 4);
-bot(1) = bbox(1) - expand;
+bot(1) = bbox(1);
 bot(2) = bbox(2) + bbox(4) - expand;
-bot(3) = bbox(3) + 2 * expand;
+bot(3) = bbox(3) + expand;
 bot(4) = bbox(4) / 2 + 2 * expand;
 %%
 mid = zeros(1, 4);
