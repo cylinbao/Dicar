@@ -120,8 +120,9 @@ while (~isequal(S, PS))
                     end
                 end
                 if (~isempty(interested_symbols))
-                    SS = S(idx(1));
+                    SS = S(k);
                     SS.label = strcat('sqrt(', formula_interpret(interested_symbols), ')');
+                    idx = [idx, k];
                     break;
                 end
                 
