@@ -56,9 +56,7 @@ function main_OpeningFcn(hObject, eventdata, handles, varargin)
 handles.output = hObject;
 addpath './libsvm/unix';
 addpath './libsvm/window';
-load 'classifier/nuSVModel_n.mat';
 load 'labels.mat'
-handles.svm_model = svm_model;
 handles.labels = labels;
 
 % Update handles structure
@@ -122,7 +120,6 @@ function Recognize_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 handles = guidata(hObject);
 S = handles.S;
-svm_model = handles.svm_model;
 labels = handles.labels;
 nS = [];
 symbols = [];
@@ -137,7 +134,7 @@ for i = 1:length(S)
     img = padarray(img, pad);
     img = double(imresize(img,[40 40]));
 % 	imshow(img);
-	[number, prob] = classify(reshape(img',1,1600));
+	[number, prob] = classify(img);
 	label = labels{number,1};
     tnS = struct('BoundingBox', S(i).BoundingBox, 'number', number, 'label', label);
 	nS = [nS; tnS];

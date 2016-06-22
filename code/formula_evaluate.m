@@ -4,7 +4,7 @@ function result = formula_evaluate(path)
 %%
 addpath './libsvm/unix';
 addpath './libsvm/window';
-load 'classifier/nuSVModel_n.mat';
+load 'classifier/nuSVModel_nr.mat';
 load 'labels.mat';
 syms m n;
 
@@ -26,7 +26,7 @@ for i = 1:length(S)
     img = padarray(img, pad);
     img = double(imresize(img,[40 40]));
 % 	imshow(img);
-	[number, prob] = classify(reshape(img',1,1600));
+	[number, prob] = classify(img);
 	label = labels{number,1};
     tnS = struct('BoundingBox', S(i).BoundingBox, 'number', number, 'label', label);
 	nS = [nS; tnS];
